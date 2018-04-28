@@ -9,8 +9,6 @@ Simple boilerplate for building [Electron](https://github.com/electron/electron)
 
 ## Whats under the hood?
 
-<center>
-
 [![electron](.readme/electron.png)](https://github.com/electron/electron)
 &nbsp;&nbsp;&nbsp;
 [![vue](.readme/vue.png)](https://github.com/vuejs/vue)
@@ -18,8 +16,6 @@ Simple boilerplate for building [Electron](https://github.com/electron/electron)
 [![webpack](.readme/webpack.png)](https://github.com/webpack/webpack)
 &nbsp;&nbsp;&nbsp;
 [![node-sass](.readme/node-sass.png)](https://github.com/sass/node-sass)
-
-</center>
 
 - [Electron](https://github.com/electron/electron) with [electron-builder](https://github.com/electron-userland/electron-builder) package for building installers.
 - [Simple](https://github.com/vuejs-templates/webpack-simple) [Vue](https://github.com/vuejs/vue) app ([vue-router](https://github.com/vuejs/vue-router) and [vuex](https://github.com/vuejs/vuex) can be additionally installed).
@@ -36,6 +32,9 @@ $ cd <folder-name>
 
 # Install all dependencies
 $ npm install
+
+# [optional] Update all dependencies
+$ npm update
 ```
 
 ## Usage
