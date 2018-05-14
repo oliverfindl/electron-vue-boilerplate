@@ -77,7 +77,7 @@ $ npm run dist:l
 .                       # root
 ├── dist                # folder for distributables 
 │   ├── app             # folder for built Vue app
-│   ├── releases        # folder for built installers
+│   └── releases        # folder for built installers
 ├── src                 # folder for source code
 │   ├── app             # folder for Vue app source code
 │   │   ├── assets      # folder for assets (images, video, audio, fonts, etc.)
