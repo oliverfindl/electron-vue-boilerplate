@@ -23,6 +23,7 @@ Simple boilerplate for building [Electron](https://github.com/electron/electron)
 - Support for [Sass](https://github.com/sass/sass) out of box thanks to [node-sass](https://github.com/sass/node-sass) package.
 
 ## Install
+
 ``` bash
 # Clone repository from GitHub to <folder-name>
 $ git clone https://github.com/oliverfindl/electron-vue <folder-name>

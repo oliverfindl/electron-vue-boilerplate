@@ -1,4 +1,5 @@
 const path = require("path");
+const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -21,42 +22,38 @@ module.exports = {
 	},
 	module: {
 		rules: [{
+			test: /\.vue$/,
+			loader: "vue-loader"
+		}, {
+			test: /\.js$/,
+			loader: "babel-loader",
+			exclude: file => /node_modules/.test(file) && !/\.vue\.js/.test(file),
+			options: {
+				presets: [
+					"env",
+					"minify"
+				]
+			}
+		}, {
 			test: /\.css$/,
 			use: [
 				"vue-style-loader",
 				"css-loader"
-			],
+			]
 		}, {
 			test: /\.scss$/,
 			use: [
 				"vue-style-loader",
 				"css-loader",
 				"sass-loader"
-			],
+			]
 		}, {
 			test: /\.sass$/,
 			use: [
 				"vue-style-loader",
 				"css-loader",
 				"sass-loader?indentedSyntax"
-			],
-		}, {
-			test: /\.vue$/,
-			loader: "vue-loader",
-			options: {
-				loaders: {
-					"scss": [
-						"vue-style-loader",
-						"css-loader",
-						"sass-loader"
-					],
-					"sass": [
-						"vue-style-loader",
-						"css-loader",
-						"sass-loader?indentedSyntax"
-					]
-				}
-			}
+			]
 		}, {
 			test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
 			loader: "file-loader",
@@ -78,6 +75,7 @@ module.exports = {
 		}]
 	},
 	plugins: [
+		new VueLoaderPlugin(),
 		new HtmlWebpackPlugin({
 			filename: "./index.html",
 			template: "./src/index.html",
