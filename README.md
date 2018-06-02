@@ -1,6 +1,6 @@
-# electron-vue
+# electron-vue-boilerplate
 
-![license](https://img.shields.io/github/license/oliverfindl/electron-vue.svg?style=flat)
+![license](https://img.shields.io/github/license/oliverfindl/electron-vue-boilerplate.svg?style=flat)
 [![paypal](https://img.shields.io/badge/donate-paypal-blue.svg?colorB=0070ba&style=flat)](https://paypal.me/oliverfindl)
 
 Simple boilerplate for building [Electron](https://github.com/electron/electron) app with [Vue](https://github.com/vuejs/vue).
@@ -23,7 +23,7 @@ Simple boilerplate for building [Electron](https://github.com/electron/electron)
 
 ```bash
 # Clone repository from GitHub to <folder-name>
-$ git clone https://github.com/oliverfindl/electron-vue <folder-name>
+$ git clone https://github.com/oliverfindl/electron-vue-boilerplate <folder-name>
 
 # Switch to <folder-name>
 $ cd <folder-name>
