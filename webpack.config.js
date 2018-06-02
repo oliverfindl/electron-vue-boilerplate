@@ -1,3 +1,5 @@
+"use strict";
+
 const path = require("path");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -5,9 +7,9 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
 	mode: process.env.NODE_ENV,
 	target: process.env.NODE_ENV === "development" ? "web" : "electron-renderer",
-	entry: path.join(__dirname, "./src/app/main.js"),
+	entry: path.resolve(__dirname, "./src/app/main.js"),
 	output: {
-		path: path.join(__dirname, "./dist/app"),
+		path: path.resolve(__dirname, "./dist/app"),
 		filename: "[name].js"
 	},
 	devServer: {
@@ -78,8 +80,15 @@ module.exports = {
 		new VueLoaderPlugin(),
 		new HtmlWebpackPlugin({
 			filename: "./index.html",
-			template: "./src/index.html",
+			template: "./src/app/index.html",
 			inject: true,
+			minify: {
+				collapseInlineTagWhitespace: true,
+				collapseWhitespace: true,
+				html5: true,
+				keepClosingSlash: true,
+				removeComments: true
+			},
 			xhtml: true
 		})
 	],
@@ -87,7 +96,7 @@ module.exports = {
 		extensions: [".js", ".vue", ".json"],
 		alias: {
 			"vue$": "vue/dist/vue.esm.js",
-			"@": path.join(__dirname, "./src/app")
+			"@": path.resolve(__dirname, "./src/app")
 		}
 	}
 }

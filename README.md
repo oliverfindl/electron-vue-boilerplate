@@ -9,13 +9,10 @@ Simple boilerplate for building [Electron](https://github.com/electron/electron)
 
 ## Whats under the hood?
 
-[![electron](.readme/electron.png)](https://github.com/electron/electron)
-&nbsp;&nbsp;&nbsp;
-[![vue](.readme/vue.png)](https://github.com/vuejs/vue)
-&nbsp;&nbsp;&nbsp;
-[![webpack](.readme/webpack.png)](https://github.com/webpack/webpack)
-&nbsp;&nbsp;&nbsp;
-[![node-sass](.readme/node-sass.png)](https://github.com/sass/node-sass)
+[![electron](.assets/electron.png)](https://github.com/electron/electron)
+[![vue](.assets/vue.png)](https://github.com/vuejs/vue)
+[![webpack](.assets/webpack.png)](https://github.com/webpack/webpack)
+[![node-sass](.assets/node-sass.png)](https://github.com/sass/node-sass)
 
 - [Electron](https://github.com/electron/electron) with [electron-builder](https://github.com/electron-userland/electron-builder) package for building installers.
 - [Simple](https://github.com/vuejs-templates/webpack-simple) [Vue](https://github.com/vuejs/vue) app ([vue-router](https://github.com/vuejs/vue-router) and [vuex](https://github.com/vuejs/vuex) can be additionally installed).
@@ -24,7 +21,7 @@ Simple boilerplate for building [Electron](https://github.com/electron/electron)
 
 ## Install
 
-``` bash
+```bash
 # Clone repository from GitHub to <folder-name>
 $ git clone https://github.com/oliverfindl/electron-vue <folder-name>
 
@@ -40,7 +37,7 @@ $ npm update
 
 ## Usage
 
-``` bash
+```bash
 # Start Webpack development server with Hot Module Replacement enabled
 $ npm run dev
 

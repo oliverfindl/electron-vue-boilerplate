@@ -1,3 +1,5 @@
+"use strict";
+
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
 const url = require("url");
@@ -11,7 +13,7 @@ function createWindow () {
 	mainWindow = new BrowserWindow({
 		width: 800,
 		height: 600,
-		icon: path.join(__dirname, "./icon.png")
+		icon: path.resolve(__dirname, "./icon.png")
 	});
 
 	// Open the DevTools.
@@ -28,7 +30,7 @@ function createWindow () {
 		slashes: true,
 		port: 8080
 	}) : url.format({
-		pathname: path.join(__dirname, "../dist/app/index.html"),
+		pathname: path.resolve(__dirname, "../dist/app/index.html"),
 		protocol: "file",
 		slashes: true
 	}));

@@ -20,6 +20,8 @@
 </template>
 
 <script>
+	"use strict";
+
 	export default {
 		name: "App",
 		data: () => ({
