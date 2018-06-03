@@ -1,7 +1,7 @@
 {
 	"name": "electron-vue-boilerplate",
-	"version": "1.1.3",
-	"description": "Simple boilerplate for building Electron app with Vue.",
+	"version": "1.1.4",
+	"description": "Simple boilerplate for building Vue app with Electron and Webpack.",
 	"main": "src/main.js",
 	"scripts": {
 		"dev": "cross-env NODE_ENV=development node_modules/.bin/webpack-dev-server --hot",

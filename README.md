@@ -3,30 +3,30 @@
 ![license](https://img.shields.io/github/license/oliverfindl/electron-vue-boilerplate.svg?style=flat)
 [![paypal](https://img.shields.io/badge/donate-paypal-blue.svg?colorB=0070ba&style=flat)](https://paypal.me/oliverfindl)
 
-Simple boilerplate for building [Electron](https://github.com/electron/electron) app with [Vue](https://github.com/vuejs/vue).
+Simple boilerplate for building [Vue](https://github.com/vuejs/vue) app with [Electron](https://github.com/electron/electron) and [Webpack](https://github.com/webpack/webpack).
 
 ---
 
 ## Whats under the hood?
 
-[![electron](.assets/electron.png)](https://github.com/electron/electron)
 [![vue](.assets/vue.png)](https://github.com/vuejs/vue)
+[![electron](.assets/electron.png)](https://github.com/electron/electron)
 [![webpack](.assets/webpack.png)](https://github.com/webpack/webpack)
 [![node-sass](.assets/node-sass.png)](https://github.com/sass/node-sass)
 
-- [Electron](https://github.com/electron/electron) with [electron-builder](https://github.com/electron-userland/electron-builder) package for building installers.
 - [Simple](https://github.com/vuejs-templates/webpack-simple) [Vue](https://github.com/vuejs/vue) app ([vue-router](https://github.com/vuejs/vue-router) and [vuex](https://github.com/vuejs/vuex) can be additionally installed).
+- [Electron](https://github.com/electron/electron) with [electron-builder](https://github.com/electron-userland/electron-builder) package for building installers.
 - [Webpack](https://github.com/webpack/webpack) server for [development](https://github.com/webpack/webpack-dev-server) with HMR enabled.
 - Support for [Sass](https://github.com/sass/sass) out of box thanks to [node-sass](https://github.com/sass/node-sass) package.
 
 ## Install
 
 ```bash
-# Clone repository from GitHub to <folder-name>
-$ git clone https://github.com/oliverfindl/electron-vue-boilerplate <folder-name>
+# Clone repository from GitHub to <directory>
+$ git clone https://github.com/oliverfindl/electron-vue-boilerplate <directory>
 
-# Switch to <folder-name>
-$ cd <folder-name>
+# Switch to <directory>
+$ cd <directory>
 
 # Install all dependencies
 $ npm install
@@ -73,16 +73,16 @@ $ npm run dist:l
 
 ```
 .                       # root
-├── dist                # folder for distributables 
-│   ├── app             # folder for built Vue app
-│   └── releases        # folder for built installers
-├── src                 # folder for source code
-│   ├── app             # folder for Vue app source code
-│   │   ├── assets      # folder for assets (images, video, audio, fonts, etc.)
+├── dist                # directory for distributables 
+│   ├── app             # directory for built Vue app
+│   └── releases        # directory for built installers
+├── src                 # directory for source code
+│   ├── app             # directory for Vue app source code
+│   │   ├── assets      # directory for assets (images, video, audio, fonts, etc.)
 │   │   ├── App.vue     # main Vue component file
+│   │   ├── index.html  # index file for Vue app
 │   │   └── main.js     # main Vue app file
 │   ├── icon.png        # app icon for Electron
-│   ├── index.html      # index file loaded by Electron
 │   └── main.js         # main Electron app file
 ├── package.json        # configuration file for npm
 └── webpack.config.js   # configuration file for Webpack
