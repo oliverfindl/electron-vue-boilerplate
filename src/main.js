@@ -19,6 +19,7 @@ function createWindow () {
 	// Open the DevTools.
 	if(process.env.NODE_ENV === "development") {
 		mainWindow.webContents.openDevTools();
+		require("devtron").install();
 		require("vue-devtools").install();
 	}
 
