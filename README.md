@@ -31,7 +31,8 @@ $ cd <directory>
 # Install all dependencies
 $ npm install
 
-# [optional] Update all dependencies
+# [optional] Check and update all dependencies
+$ npm outdated
 $ npm update
 ```
 

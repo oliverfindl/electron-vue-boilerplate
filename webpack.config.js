@@ -9,7 +9,7 @@ module.exports = {
 	target: process.env.NODE_ENV === "development" ? "web" : "electron-renderer",
 	entry: path.resolve(__dirname, "./src/app/main.js"),
 	output: {
-		path: path.resolve(__dirname, "./dist/app"),
+		path: path.resolve(__dirname, "./dist/app/"),
 		filename: "[name].js"
 	},
 	devServer: {
@@ -33,7 +33,8 @@ module.exports = {
 			options: {
 				presets: [
 					"env",
-					"minify"
+					"minify",
+					"stage-2"
 				]
 			}
 		}, {
@@ -96,7 +97,7 @@ module.exports = {
 		extensions: [".js", ".vue", ".json"],
 		alias: {
 			"vue$": "vue/dist/vue.esm.js",
-			"@": path.resolve(__dirname, "./src/app")
+			"@": path.resolve(__dirname, "./src/app/")
 		}
 	}
 }

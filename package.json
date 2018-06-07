@@ -1,6 +1,6 @@
 {
 	"name": "electron-vue-boilerplate",
-	"version": "1.1.5",
+	"version": "1.1.6",
 	"description": "Simple boilerplate for building Vue app with Electron and Webpack.",
 	"main": "src/main.js",
 	"scripts": {
@@ -53,6 +53,7 @@
 		"babel-loader": "^7.1.4",
 		"babel-preset-env": "^1.7.0",
 		"babel-preset-minify": "^0.4.3",
+		"babel-preset-stage-2": "^6.24.1",
 		"cross-env": "^5.1.6",
 		"css-loader": "^0.28.11",
 		"devtron": "^1.4.0",
@@ -66,7 +67,7 @@
 		"vue-loader": "^15.2.4",
 		"vue-style-loader": "^4.1.0",
 		"vue-template-compiler": "^2.5.16",
-		"webpack": "^4.11.0",
+		"webpack": "^4.11.1",
 		"webpack-cli": "^2.1.5",
 		"webpack-dev-server": "^3.1.4"
 	}
