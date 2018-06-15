@@ -10,7 +10,9 @@ module.exports = {
 	entry: path.resolve(__dirname, "./src/app/main.js"),
 	output: {
 		path: path.resolve(__dirname, "./dist/app/"),
-		filename: "[name].js"
+//		publicPath: "/",
+		filename: "javascript/[name].[hash:8].js",
+		chunkFilename: "javascript/[id].[chunkhash:8].js"
 	},
 	devServer: {
 		historyApiFallback: true,
