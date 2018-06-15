@@ -2,6 +2,7 @@
 
 const path = require("path");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -81,6 +82,7 @@ module.exports = {
 	},
 	plugins: [
 		new VueLoaderPlugin(),
+		new CleanWebpackPlugin(["./dist/app/", "./dist/releases/"]),
 		new HtmlWebpackPlugin({
 			filename: "./index.html",
 			template: "./src/app/index.html",
