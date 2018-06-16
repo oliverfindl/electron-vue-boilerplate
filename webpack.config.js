@@ -82,7 +82,7 @@ module.exports = {
 	},
 	plugins: [
 		new VueLoaderPlugin(),
-		new CleanWebpackPlugin(["./dist/app/", "./dist/releases/"]),
+		new CleanWebpackPlugin(["./dist/app/"]),
 		new HtmlWebpackPlugin({
 			filename: "./index.html",
 			template: "./src/app/index.html",
