@@ -9,10 +9,10 @@ Simple boilerplate for building [Vue](https://github.com/vuejs/vue) app with [El
 
 ## Whats under the hood?
 
-[![vue](.assets/vue.png)](https://github.com/vuejs/vue)
-[![electron](.assets/electron.png)](https://github.com/electron/electron)
-[![webpack](.assets/webpack.png)](https://github.com/webpack/webpack)
-[![node-sass](.assets/node-sass.png)](https://github.com/sass/node-sass)
+[![vue](assets/vue.png)](https://github.com/vuejs/vue)
+[![electron](assets/electron.png)](https://github.com/electron/electron)
+[![webpack](assets/webpack.png)](https://github.com/webpack/webpack)
+[![node-sass](assets/node-sass.png)](https://github.com/sass/node-sass)
 
 - [Simple](https://github.com/vuejs-templates/webpack-simple) [Vue](https://github.com/vuejs/vue) app ([vue-router](https://github.com/vuejs/vue-router) and [vuex](https://github.com/vuejs/vuex) can be additionally installed).
 - [Electron](https://github.com/electron/electron) with [electron-builder](https://github.com/electron-userland/electron-builder) package for building installers.
