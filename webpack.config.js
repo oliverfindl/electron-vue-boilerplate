@@ -11,9 +11,8 @@ module.exports = {
 	entry: path.resolve(__dirname, "./src/app/main.js"),
 	output: {
 		path: path.resolve(__dirname, "./dist/app/"),
-//		publicPath: "/",
-		filename: "javascript/[name].[hash:8].js",
-		chunkFilename: "javascript/[id].[chunkhash:8].js"
+		filename: "./javascript/[name].[hash:8].js",
+		chunkFilename: "./javascript/[id].[chunkhash:8].js"
 	},
 	devServer: {
 		historyApiFallback: true,
@@ -64,19 +63,19 @@ module.exports = {
 			test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
 			loader: "file-loader",
 			options: {
-				name: "images/[name].[hash:8].[ext]"
+				name: "./images/[name].[hash:8].[ext]"
 			}
 		}, {
 			test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
 			loader: "file-loader",
 			options: {
-				name: "media/[name].[hash:8].[ext]"
+				name: "./media/[name].[hash:8].[ext]"
 			}
 		}, {
 			test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
 			loader: "file-loader",
 			options: {
-				name:"fonts/[name].[hash:8].[ext]"
+				name:"./fonts/[name].[hash:8].[ext]"
 			}
 		}]
 	},
