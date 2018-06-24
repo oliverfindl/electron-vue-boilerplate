@@ -1,4 +1,4 @@
-<template>
+<template lang="html">
 	<div id="app">
 		<img src="./assets/logo.png" />
 		<h1>{{ message }}</h1>
