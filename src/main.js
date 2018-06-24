@@ -16,12 +16,8 @@ function createWindow () {
 		icon: path.resolve(__dirname, "./icon.png")
 	});
 
-	// Open the DevTools.
-	if(process.env.NODE_ENV === "development") {
-		mainWindow.webContents.openDevTools();
-		require("devtron").install();
-		require("vue-devtools").install();
-	}
+	// Remove menu from browser window.
+	mainWindow.setMenu(null);
 
 	// Load the index.html of the app.
 	mainWindow.loadURL(process.env.NODE_ENV === "development" ? url.format({
@@ -35,6 +31,13 @@ function createWindow () {
 		protocol: "file",
 		slashes: true
 	}));
+
+	// Open the DevTools.
+	if(process.env.NODE_ENV === "development") {
+		mainWindow.webContents.openDevTools();
+		require("devtron").install();
+		require("vue-devtools").install();
+	}
 
 	// Emitted when the window is closed.
 	mainWindow.on("closed", () => {
