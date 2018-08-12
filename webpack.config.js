@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
 	mode: process.env.NODE_ENV,
-	target: process.env.NODE_ENV === "development" ? "web" : "electron-renderer",
+	target: "electron-renderer",
 	entry: path.resolve(__dirname, "./src/app/main.js"),
 	output: {
 		path: path.resolve(__dirname, "./dist/app/"),
