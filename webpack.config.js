@@ -11,8 +11,13 @@ module.exports = {
 	entry: path.resolve(__dirname, "./src/app/main.js"),
 	output: {
 		path: path.resolve(__dirname, "./dist/app/"),
+//		target: "/",
 		filename: "./javascript/[name].[hash:8].js",
 		chunkFilename: "./javascript/[id].[chunkhash:8].js"
+	},
+	node: {
+		__filename: process.env.NODE_ENV === "development",
+		__dirname: process.env.NODE_ENV === "development"
 	},
 	devServer: {
 		historyApiFallback: true,

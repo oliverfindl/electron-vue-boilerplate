@@ -1,8 +1,8 @@
 "use strict";
 
 const { app, BrowserWindow } = require("electron");
-const path = require("path");
-const url = require("url");
+const { resolve } = require("path");
+const { format } = require("url");
 
 // Keep a global reference of the window object, if you don"t, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -13,21 +13,25 @@ function createWindow () {
 	mainWindow = new BrowserWindow({
 		width: 800,
 		height: 600,
-		icon: path.resolve(__dirname, "./icon.png")
+		icon: resolve(__dirname, "./icon.png"),
+		webPreferences: {
+//			webSecurity: false
+		}
+
 	});
 
 	// Remove menu from browser window.
 	mainWindow.setMenu(null);
 
 	// Load the index.html of the app.
-	mainWindow.loadURL(process.env.NODE_ENV === "development" ? url.format({
+	mainWindow.loadURL(process.env.NODE_ENV === "development" ? format({
 		hostname: "localhost",
 		pathname: "index.html",
 		protocol: "http",
 		slashes: true,
 		port: 8080
-	}) : url.format({
-		pathname: path.resolve(__dirname, "../dist/app/index.html"),
+	}) : format({
+		pathname: resolve(__dirname, "../dist/app/index.html"),
 		protocol: "file",
 		slashes: true
 	}));
@@ -51,7 +55,9 @@ function createWindow () {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on("ready", createWindow);
+app.on("ready", () => {
+	createWindow();
+});
 
 // Quit when all windows are closed.
 app.on("window-all-closed", () => {
