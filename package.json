@@ -4,17 +4,18 @@
 	"description": "Simple boilerplate for building Vue app with Electron and Webpack.",
 	"main": "./src/main.js",
 	"scripts": {
-		"dev": "./node_modules/.bin/cross-env NODE_ENV=development ./node_modules/.bin/webpack-dev-server --hot",
-		"build": "./node_modules/.bin/cross-env NODE_ENV=production ./node_modules/.bin/webpack --hide-modules --progress",
+		"dev": "npx cross-env NODE_ENV=development npx webpack-dev-server --hot",
+		"build": "npx cross-env NODE_ENV=production npx webpack --hide-modules --progress",
 		"start": "npm run start:dev",
-		"start:dev": "./node_modules/.bin/cross-env NODE_ENV=development ./node_modules/.bin/electron ./ --disable-gpu",
-		"start:prod": "npm run build && ./node_modules/.bin/cross-env NODE_ENV=production ./node_modules/.bin/electron ./ --disable-gpu",
-		"pack": "npm run build && ./node_modules/.bin/electron-builder --dir",
-		"dist": "npm run build && ./node_modules/.bin/electron-builder",
-		"dist:w": "npm run build && ./node_modules/.bin/electron-builder -w --x64",
-		"dist:m": "npm run build && ./node_modules/.bin/electron-builder -m --x64",
-		"dist:l": "npm run build && ./node_modules/.bin/electron-builder -l --x64",
-		"postinstall": "./node_modules/.bin/electron-builder install-app-deps"
+		"start:dev": "npx cross-env NODE_ENV=development npx electron ./ --disable-gpu",
+		"start:prod": "npm run build && npx cross-env NODE_ENV=production npx electron ./ --disable-gpu",
+		"pack": "npm run build && npx electron-builder --dir",
+		"dist": "npm run build && npx electron-builder",
+		"dist:w": "npm run build && npx electron-builder -w --x64 --ia32",
+		"dist:m": "npm run build && npx electron-builder -m --x64 --ia32",
+		"dist:l": "npm run build && npx electron-builder -l --x64 --ia32",
+		"dist:all": "npm run build && npx electron-builder -mwl --x64 --ia32",
+		"postinstall": "npx electron-builder install-app-deps"
 	},
 	"build": {
 		"appId": "app.id",
