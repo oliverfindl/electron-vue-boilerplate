@@ -74,16 +74,16 @@ $ npm run dist:l
 
 ```
 .                       # root
+├── build               # directory for built Electron app 
 ├── dist                # directory for distributables 
-│   ├── app             # directory for built Vue app
-│   └── releases        # directory for built installers
+│   └── app             # directory for built Vue app
 ├── src                 # directory for source code
 │   ├── app             # directory for Vue app source code
 │   │   ├── assets      # directory for assets (images, video, audio, fonts, etc.)
 │   │   ├── App.vue     # main Vue component file
 │   │   ├── index.html  # index file for Vue app
 │   │   └── main.js     # main Vue app file
-│   ├── icon.png        # app icon for Electron
+│   ├── icon.png        # app icon for Electron app
 │   └── main.js         # main Electron app file
 ├── package.json        # configuration file for npm
 └── webpack.config.js   # configuration file for Webpack

@@ -20,7 +20,7 @@
 	"build": {
 		"appId": "app.id",
 		"directories": {
-			"output": "./dist/releases/"
+			"output": "./build/"
 		}
 	},
 	"repository": {
