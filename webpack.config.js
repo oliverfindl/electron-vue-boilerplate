@@ -61,7 +61,7 @@ module.exports = {
 				"sass-loader?indentedSyntax"
 			]
 		}, {
-			test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+			test: /\.(png|jpe?g|gif|ico|svg)(\?.*)?$/,
 			loader: "file-loader",
 			options: {
 				name: "./images/[name].[hash:8].[ext]"
