@@ -1,6 +1,6 @@
 "use strict";
 
-const path = require("path");
+const { resolve } = require("path");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -8,9 +8,9 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
 	mode: process.env.NODE_ENV,
 	target: "electron-renderer",
-	entry: path.resolve(__dirname, "./src/app/main.js"),
+	entry: resolve(__dirname, "./src/app/main.js"),
 	output: {
-		path: path.resolve(__dirname, "./dist/app/"),
+		path: resolve(__dirname, "./dist/app/"),
 //		target: "/",
 		filename: "./javascript/[name].[hash:8].js",
 		chunkFilename: "./javascript/[id].[chunkhash:8].js"
@@ -101,7 +101,7 @@ module.exports = {
 		extensions: [".js", ".vue", ".json"],
 		alias: {
 			"vue$": "vue/dist/vue.esm.js",
-			"@": path.resolve(__dirname, "./src/app/")
+			"@": resolve(__dirname, "./src/app/")
 		}
 	}
 };
