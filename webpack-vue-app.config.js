@@ -66,14 +66,25 @@ module.exports = {
 			use: [
 				"vue-style-loader",
 				"css-loader",
-				"sass-loader"
+				{
+					loader: "sass-loader",
+					options: {
+						outputStyle: "compressed"
+					}
+				}
 			]
 		}, {
 			test: /\.sass$/,
 			use: [
 				"vue-style-loader",
 				"css-loader",
-				"sass-loader?indentedSyntax"
+				{
+					loader: "sass-loader",
+					options: {
+						indentedSyntax: true,
+						outputStyle: "compressed"
+					}
+				}
 			]
 		}, {
 			test: /\.(png|jpe?g|gif|ico|svg)(\?.*)?$/,
