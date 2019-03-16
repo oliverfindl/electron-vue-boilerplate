@@ -8,22 +8,22 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
 	mode: process.env.NODE_ENV,
 	target: "electron-renderer",
-	entry: resolve(__dirname, "./src/app/main.js"),
+	entry: resolve(__dirname, "./src/vue-app/main.js"),
 	output: {
-		path: resolve(__dirname, "./dist/app/"),
+		path: resolve(__dirname, "./dist/vue-app/"),
 //		target: "/",
 		filename: "./javascript/[name].[hash:8].js",
 		chunkFilename: "./javascript/[id].[chunkhash:8].js"
 	},
 	node: {
-		__filename: process.env.NODE_ENV === "development",
-		__dirname: process.env.NODE_ENV === "development"
+		__filename: true,
+		__dirname: true
 	},
 	devServer: {
 		historyApiFallback: true,
 		overlay: {
-			warnings: true,
-			errors: true
+			errors: true,
+			warnings: true
 		}
 	},
 	performance: {
@@ -38,7 +38,10 @@ module.exports = {
 			loader: "babel-loader",
 			exclude: file => /node_modules/.test(file) && !/\.vue\.js/.test(file),
 			options: {
-				presets: ["vue", "env", "minify", "stage-2"]
+				comments: false,
+				minified: true,
+				plugins: ["@babel/plugin-syntax-dynamic-import"],
+				presets: ["vue", "@babel/preset-env"]
 			}
 		}, {
 			test: /\.css$/,
@@ -82,10 +85,10 @@ module.exports = {
 	},
 	plugins: [
 		new VueLoaderPlugin(),
-		new CleanWebpackPlugin(["./dist/app/"]),
+		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
 			filename: "./index.html",
-			template: "./src/app/index.html",
+			template: "./src/vue-app/index.html",
 			inject: true,
 			minify: {
 				collapseInlineTagWhitespace: true,
@@ -101,7 +104,7 @@ module.exports = {
 		extensions: [".js", ".vue", ".json"],
 		alias: {
 			"vue$": "vue/dist/vue.esm.js",
-			"@": resolve(__dirname, "./src/app/")
+			"@": resolve(__dirname, "./src/vue-app/")
 		}
 	}
 };
