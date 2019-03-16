@@ -1,6 +1,6 @@
 <template lang="html">
 	<div id="app">
-		<img src="./assets/logo.png" />
+		<img src="@/assets/logo.png" />
 		<h1>{{ message }}</h1>
 		<h2>Essential Links</h2>
 		<ul>
@@ -20,6 +20,8 @@
 </template>
 
 <script>
+/* eslint-disable indent */
+
 	"use strict";
 
 	export default {
@@ -27,7 +29,7 @@
 		data: () => ({
 			message: "Welcome to Your Vue.js App"
 		})
-	}
+	};
 </script>
 
 <style lang="scss">

@@ -24,6 +24,18 @@ module.exports = {
 	},
 	module: {
 		rules: [{
+			enforce: "pre",
+			test: /\.js$/,
+			exclude: /node_modules/,
+			loader: "eslint-loader",
+			options: {
+				configFile: resolve(__dirname, "./.eslintrc-electron-app.js"),
+				emitError: true,
+				emitWarning: true,
+				failOnError: true,
+				failOnWarning: true
+			}
+		}, {
 			test: /\.js$/,
 			loader: "babel-loader",
 			options: {
