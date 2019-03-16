@@ -10,9 +10,9 @@ readdirSync("node_modules").filter(mods => ![".bin", ".cache"].includes(mods)).f
 module.exports = {
 	mode: process.env.NODE_ENV,
 	target: "electron-main",
-	entry: resolve(__dirname, "./src/electron-app/main.js"),
+	entry: resolve(__dirname, "src/electron-app/main.js"),
 	output: {
-		path: resolve(__dirname, "./dist/electron-app/")
+		path: resolve(__dirname, "dist/electron-app/")
 	},
 	externals: nodeModules,
 	node: {
@@ -29,7 +29,7 @@ module.exports = {
 			exclude: /node_modules/,
 			loader: "eslint-loader",
 			options: {
-				configFile: resolve(__dirname, "./.eslintrc-electron-app.js"),
+				configFile: resolve(__dirname, ".eslintrc-electron-app.js"),
 				emitError: true,
 				emitWarning: true,
 				failOnError: true,
@@ -51,7 +51,7 @@ module.exports = {
 	resolve: {
 		extensions: [".js", ".json"],
 		alias: {
-			"@": resolve(__dirname, "./src/electron-app/")
+			"@": resolve(__dirname, "src/electron-app/")
 		}
 	}
 };

@@ -8,12 +8,12 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
 	mode: process.env.NODE_ENV,
 	target: "electron-renderer",
-	entry: resolve(__dirname, "./src/vue-app/main.js"),
+	entry: resolve(__dirname, "src/vue-app/main.js"),
 	output: {
-		path: resolve(__dirname, "./dist/vue-app/"),
+		path: resolve(__dirname, "dist/vue-app/"),
 //		target: "/",
-		filename: "./javascript/[name].[hash:8].js",
-		chunkFilename: "./javascript/[id].[chunkhash:8].js"
+		filename: "javascript/[name].[hash:8].js",
+		chunkFilename: "javascript/[id].[chunkhash:8].js"
 	},
 	node: {
 		__filename: true,
@@ -36,7 +36,7 @@ module.exports = {
 			exclude: /node_modules/,
 			loader: "eslint-loader",
 			options: {
-				configFile: resolve(__dirname, "./.eslintrc-vue-app.js"),
+				configFile: resolve(__dirname, ".eslintrc-vue-app.js"),
 				emitError: true,
 				emitWarning: true,
 				failOnError: true,
@@ -90,19 +90,19 @@ module.exports = {
 			test: /\.(png|jpe?g|gif|ico|svg)(\?.*)?$/,
 			loader: "file-loader",
 			options: {
-				name: "./images/[name].[hash:8].[ext]"
+				name: "images/[name].[hash:8].[ext]"
 			}
 		}, {
 			test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
 			loader: "file-loader",
 			options: {
-				name: "./media/[name].[hash:8].[ext]"
+				name: "media/[name].[hash:8].[ext]"
 			}
 		}, {
 			test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
 			loader: "file-loader",
 			options: {
-				name:"./fonts/[name].[hash:8].[ext]"
+				name:"fonts/[name].[hash:8].[ext]"
 			}
 		}]
 	},
@@ -110,8 +110,8 @@ module.exports = {
 		new VueLoaderPlugin(),
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
-			filename: "./index.html",
-			template: "./src/vue-app/index.html",
+			filename: "index.html",
+			template: "src/vue-app/index.html",
 			inject: true,
 			minify: {
 				collapseInlineTagWhitespace: true,
@@ -127,7 +127,7 @@ module.exports = {
 		extensions: [".js", ".vue", ".json"],
 		alias: {
 			"vue$": "vue/dist/vue.esm.js",
-			"@": resolve(__dirname, "./src/vue-app/")
+			"@": resolve(__dirname, "src/vue-app/")
 		}
 	}
 };

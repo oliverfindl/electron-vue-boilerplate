@@ -14,7 +14,7 @@ function createWindow () {
 	mainWindow = new BrowserWindow({
 		width: 800,
 		height: 600,
-		icon: resolve(__dirname, "./icon.png")
+		icon: resolve(__dirname, "icon.png")
 	});
 
 	// Remove menu from browser window.
@@ -28,7 +28,7 @@ function createWindow () {
 		slashes: true,
 		port: 8080
 	}) : format({
-		pathname: resolve(__dirname, "../vue-app/index.html"),
+		pathname: resolve(__dirname, "..", "vue-app/index.html"),
 		protocol: "file",
 		slashes: true
 	}));

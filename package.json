@@ -2,15 +2,15 @@
 	"name": "electron-vue-boilerplate",
 	"version": "1.2.2",
 	"description": "Simple boilerplate for building Vue app with Electron and Webpack.",
-	"main": "./dist/electron-app/main.js",
+	"main": "dist/electron-app/main.js",
 	"scripts": {
 		"dev": "npx cross-env NODE_ENV=development npm run watch:vue-app",
 		"start": "npx cross-env NODE_ENV=development npm run build:electron-app && npm run start:electron-app",
-		"start:electron-app": "npx electron ./ --disable-gpu",
+		"start:electron-app": "npx electron . --disable-gpu",
 		"build": "npx cross-env NODE_ENV=production npm run build:electron-app && npx cross-env NODE_ENV=production npm run build:vue-app",
-		"build:electron-app": "npx webpack --config ./webpack-electron-app.config.js --hide-modules --progress && npx ncp ./src/electron-app/icon.png ./dist/electron-app/icon.png",
-		"build:vue-app": "npx webpack --config ./webpack-vue-app.config.js --hide-modules --progress",
-		"watch:vue-app": "npx webpack-dev-server --config ./webpack-vue-app.config.js --hot",
+		"build:electron-app": "npx webpack --config webpack-electron-app.config.js --hide-modules --progress && npx ncp src/electron-app/icon.png dist/electron-app/icon.png",
+		"build:vue-app": "npx webpack --config webpack-vue-app.config.js --hide-modules --progress",
+		"watch:vue-app": "npx webpack-dev-server --config webpack-vue-app.config.js --hot",
 		"pack": "npm run build && npx electron-builder --dir",
 		"dist": "npm run build && npx electron-builder",
 		"dist:all": "npm run build && npx electron-builder -wml --x64",
@@ -22,7 +22,7 @@
 	"build": {
 		"appId": "app.id",
 		"directories": {
-			"output": "./build/"
+			"output": "build/"
 		}
 	},
 	"repository": {
