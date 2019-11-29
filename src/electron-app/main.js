@@ -14,7 +14,10 @@ function createWindow () {
 	mainWindow = new BrowserWindow({
 		width: 800,
 		height: 600,
-		icon: resolve(__dirname, "icon.png")
+		icon: resolve(__dirname, "icon.png"),
+		webPreferences: {
+			nodeIntegration: true
+		}
 	});
 
 	// Remove menu from browser window.
