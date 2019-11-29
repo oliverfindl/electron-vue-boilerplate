@@ -2,10 +2,10 @@
 
 const { resolve } = require("path");
 const { readdirSync } = require("fs");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const nodeModules = {};
-readdirSync("node_modules").filter(mods => ![".bin", ".cache"].includes(mods)).forEach(mod => nodeModules[mod] = `commonjs ${mod}`);
+readdirSync("node_modules").filter(mods => ![".bin", ".cache"].includes(mods)).forEach(mod => nodeModules[mod] = `require("${mod}")`);
 
 module.exports = {
 	mode: process.env.NODE_ENV,
@@ -25,7 +25,7 @@ module.exports = {
 	module: {
 		rules: [{
 			enforce: "pre",
-			test: /\.js$/,
+			test: /\.m?js$/i,
 			exclude: /node_modules/,
 			loader: "eslint-loader",
 			options: {
@@ -36,12 +36,11 @@ module.exports = {
 				failOnWarning: true
 			}
 		}, {
-			test: /\.js$/,
+			test: /\.m?js$/i,
 			loader: "babel-loader",
 			options: {
 				comments: false,
-				minified: true,
-				presets: ["@babel/preset-env"]
+				minified: true
 			}
 		}]
 	},
@@ -49,7 +48,7 @@ module.exports = {
 		new CleanWebpackPlugin()
 	],
 	resolve: {
-		extensions: [".js", ".json"],
+		extensions: [".js", ".mjs", ".json"],
 		alias: {
 			"@": resolve(__dirname, "src/electron-app/")
 		}

@@ -2,7 +2,7 @@
 
 const { resolve } = require("path");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -32,8 +32,8 @@ module.exports = {
 	module: {
 		rules: [{
 			enforce: "pre",
-			test: /\.(vue|js)$/,
-			exclude: /node_modules/,
+			test: /\.(vue|m?js)$/i,
+			exclude: /(node_modules|bower_components)/,
 			loader: "eslint-loader",
 			options: {
 				configFile: resolve(__dirname, ".eslintrc-vue-app.js"),
@@ -43,66 +43,71 @@ module.exports = {
 				failOnWarning: true
 			}
 		}, {
-			test: /\.vue$/,
+			test: /\.vue$/i,
 			loader: "vue-loader"
 		}, {
-			test: /\.js$/,
+			test: /\.m?js$/i,
 			loader: "babel-loader",
-			exclude: file => /node_modules/.test(file) && !/\.vue\.js/.test(file),
+			exclude: /(node_modules|bower_components)/,
 			options: {
 				comments: false,
-				minified: true,
-				plugins: ["@babel/plugin-syntax-dynamic-import"],
-				presets: ["vue", "@babel/preset-env"]
+				minified: true
 			}
 		}, {
-			test: /\.css$/,
+			test: /\.css$/i,
 			use: [
 				"vue-style-loader",
 				"css-loader"
 			]
 		}, {
-			test: /\.scss$/,
+			test: /\.scss$/i,
 			use: [
 				"vue-style-loader",
 				"css-loader",
 				{
 					loader: "sass-loader",
 					options: {
-						outputStyle: "compressed"
+						sassOptions: {
+							outputStyle: "compressed"
+						}
 					}
 				}
 			]
 		}, {
-			test: /\.sass$/,
+			test: /\.sass$/i,
 			use: [
 				"vue-style-loader",
 				"css-loader",
 				{
 					loader: "sass-loader",
 					options: {
-						indentedSyntax: true,
-						outputStyle: "compressed"
+						sassOptions: {
+							indentedSyntax: true,
+							outputStyle: "compressed"
+						}
 					}
 				}
 			]
 		}, {
-			test: /\.(png|jpe?g|gif|ico|svg)(\?.*)?$/,
+			test: /\.(png|jpe?g|gif|ico|svg)(\?.*)?$/i,
 			loader: "file-loader",
 			options: {
-				name: "images/[name].[hash:8].[ext]"
+				name: "images/[name].[hash:8].[ext]",
+				esModule: false
 			}
 		}, {
-			test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+			test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/i,
 			loader: "file-loader",
 			options: {
-				name: "media/[name].[hash:8].[ext]"
+				name: "media/[name].[hash:8].[ext]",
+				esModule: false
 			}
 		}, {
-			test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+			test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
 			loader: "file-loader",
 			options: {
-				name:"fonts/[name].[hash:8].[ext]"
+				name:"fonts/[name].[hash:8].[ext]",
+				esModule: false
 			}
 		}]
 	},
@@ -111,7 +116,7 @@ module.exports = {
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
 			filename: "index.html",
-			template: "src/vue-app/index.html",
+			template: resolve("src/vue-app/index.html"),
 			inject: true,
 			minify: {
 				collapseInlineTagWhitespace: true,
@@ -124,7 +129,7 @@ module.exports = {
 		})
 	],
 	resolve: {
-		extensions: [".js", ".vue", ".json"],
+		extensions: [".vue", ".js", "mjs", ".json"],
 		alias: {
 			"vue$": "vue/dist/vue.esm.js",
 			"@": resolve(__dirname, "src/vue-app/")
