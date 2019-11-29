@@ -13,8 +13,7 @@ module.exports = {
 	},
 	"parserOptions": {
 		"ecmaVersion": 2018,
-		"parser": "babel-eslint",
-		"sourceType": "module"
+		"parser": "babel-eslint"
 	},
 	"rules": {
 		"no-console": process.env.NODE_ENV === "production" ? "error" : "off",
