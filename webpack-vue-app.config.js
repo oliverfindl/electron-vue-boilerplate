@@ -115,7 +115,23 @@ module.exports = {
 				}
 			]
 		}, {
-			test: /\.(png|jpe?g|gif|ico|svg)(\?.*)?$/i,
+			test: /\.svg(\?.*)?$/i,
+			use: [{
+				loader: "file-loader",
+				options: {
+					name: "images/[name].[ext]",
+					esModule: false
+				}
+			}, {
+				loader: "svgo-loader",
+				options: {
+					plugins: [{
+						removeViewBox: false
+					}]
+				}
+			}]
+		}, {
+			test: /\.(png|jpe?g|gif|ico)(\?.*)?$/i,
 			loader: "file-loader",
 			options: {
 				name: "images/[name].[hash:8].[ext]",
