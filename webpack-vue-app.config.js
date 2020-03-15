@@ -2,7 +2,6 @@
 
 const { resolve } = require("path");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
@@ -156,7 +155,6 @@ module.exports = {
 	},
 	plugins: [
 		new VueLoaderPlugin(),
-		new BundleAnalyzerPlugin(),
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
 			filename: "index.html",
