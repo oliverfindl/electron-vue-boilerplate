@@ -8,7 +8,8 @@ module.exports = {
 		purgecss({
 			content: ["src/vue-app/index.html", "src/vue-app/**/*.js", "src/vue-app/**/*.vue"],
 			keyframes: true,
-			fontFace: true
+			fontFace: true,
+			variables: true
 		})
 	]
 };
