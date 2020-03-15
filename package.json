@@ -1,6 +1,6 @@
 {
 	"name": "electron-vue-boilerplate",
-	"version": "1.4.0",
+	"version": "1.4.1",
 	"description": "Simple boilerplate for building Vue app with Electron and Webpack.",
 	"main": "dist/electron-app/main.js",
 	"scripts": {
