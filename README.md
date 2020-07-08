@@ -105,10 +105,13 @@ $ npm run postinstall
 │   └── vue-app                     # directory for Vue app distributables
 ├── src                             # directory for source code
 │   ├── electron-app                # directory for Electron app source code
-│   │   ├── icon.png                # app icon for Electron app
+│   │   ├── assets                  # directory for Electron app assets
+│   │   │   └── icon.png            # app icon for Electron app
 │   │   └── main.js                 # main Electron app file
 │   └── vue-app                     # directory for Vue app source code
-│       ├── assets                  # directory for assets (images, video, audio, fonts, etc.)
+│       ├── assets                  # directory for Vue app assets
+│       ├── components              # directory for Vue app components
+│       ├── styles                  # directory for Vue app styles
 │       ├── App.vue                 # main Vue component file
 │       ├── index.html              # index file for Vue app
 │       └── main.js                 # main Vue app file
