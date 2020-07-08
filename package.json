@@ -22,8 +22,14 @@
 	},
 	"build": {
 		"appId": "app.id",
+		"productName": "App",
+		"files": [
+			"dist/**/*",
+			"!node_modules${/*}"
+		],
 		"directories": {
-			"output": "build/"
+			"buildResources": "dist",
+			"output": "build"
 		}
 	},
 	"repository": {
