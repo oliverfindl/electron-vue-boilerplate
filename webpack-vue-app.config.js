@@ -5,12 +5,14 @@ const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+const { name: PACKAGE_NAME } = require(resolve(__dirname, "./package.json"));
+
 module.exports = {
 	mode: process.env.NODE_ENV,
 	target: "electron-renderer",
-	entry: resolve(__dirname, "src/vue-app/main.js"),
+	entry: resolve(__dirname, "./src/vue-app/main.js"),
 	output: {
-		path: resolve(__dirname, "dist/vue-app/"),
+		path: resolve(__dirname, "./dist/vue-app/"),
 //		target: "/",
 		filename: "javascript/[name].[hash:8].js",
 		chunkFilename: "javascript/[id].[chunkhash:8].js"
@@ -36,7 +38,7 @@ module.exports = {
 			exclude: /(node_modules|bower_components)/,
 			loader: "eslint-loader",
 			options: {
-				configFile: resolve(__dirname, ".eslintrc-vue-app.js"),
+				configFile: resolve(__dirname, "./.eslintrc-vue-app.js"),
 				emitError: true,
 				emitWarning: true,
 				failOnError: true,
@@ -119,7 +121,7 @@ module.exports = {
 			use: [{
 				loader: "file-loader",
 				options: {
-					name: "images/[name].[ext]",
+					name: "images/[name].[hash:8].[ext]",
 					esModule: false
 				}
 			}, {
@@ -138,7 +140,7 @@ module.exports = {
 				esModule: false
 			}
 		}, {
-			test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/i,
+			test: /\.(mp4|webm|ogg|mp3|aac|wav|flac)(\?.*)?$/i,
 			loader: "file-loader",
 			options: {
 				name: "media/[name].[hash:8].[ext]",
@@ -157,8 +159,9 @@ module.exports = {
 		new VueLoaderPlugin(),
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
+			title: PACKAGE_NAME,
 			filename: "index.html",
-			template: resolve("src/vue-app/index.html"),
+			template: resolve(__dirname, "./src/vue-app/index.html"),
 			inject: true,
 			minify: {
 				collapseInlineTagWhitespace: true,
@@ -171,10 +174,10 @@ module.exports = {
 		})
 	],
 	resolve: {
-		extensions: [".vue", ".js", "mjs", ".json"],
+		extensions: [ ".vue", ".js", ".mjs", ".json" ],
 		alias: {
 			"vue$": "vue/dist/vue.esm.js",
-			"@": resolve(__dirname, "src/vue-app/")
+			"@": resolve(__dirname, "./src/vue-app/")
 		}
 	}
 };
