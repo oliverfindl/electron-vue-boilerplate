@@ -1,11 +1,8 @@
 "use strict";
 
 const { resolve } = require("path");
-const { readdirSync } = require("fs");
+const nodeExternals = require("webpack-node-externals");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-
-const nodeModules = {};
-readdirSync("node_modules").filter(mods => ![".bin", ".cache"].includes(mods)).forEach(mod => nodeModules[mod] = `require("${mod}")`);
 
 module.exports = {
 	mode: process.env.NODE_ENV,
@@ -14,7 +11,7 @@ module.exports = {
 	output: {
 		path: resolve(__dirname, "./dist/electron-app/")
 	},
-	externals: nodeModules,
+	externals: [ nodeExternals() ],
 	node: {
 		__filename: false,
 		__dirname: false
