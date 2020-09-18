@@ -35,7 +35,7 @@ const createWindow = () => {
 	// Open the DevTools.
 	if(process.env.NODE_ENV === "development") {
 		mainWindow.webContents.openDevTools();
-		require("devtron").install();
+		// require("devtron").install(); // TypeError: electron.BrowserWindow.addDevToolsExtension is not a function
 		require("vue-devtools").install();
 	}
 };
