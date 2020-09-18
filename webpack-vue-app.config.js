@@ -133,7 +133,7 @@ module.exports = {
 				}
 			}]
 		}, {
-			test: /\.(png|jpe?g|gif|ico)(\?.*)?$/i,
+			test: /\.(png|jpe?g|webp|gif|ico)(\?.*)?$/i,
 			loader: "file-loader",
 			options: {
 				name: "images/[name].[hash:8].[ext]",
