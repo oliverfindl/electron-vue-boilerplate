@@ -5,19 +5,10 @@ const nodeExternals = require("webpack-node-externals");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-	mode: process.env.NODE_ENV,
-	target: "electron-main",
 	entry: resolve(__dirname, "./src/electron-app/main.js"),
+	mode: process.env.NODE_ENV,
 	output: {
 		path: resolve(__dirname, "./dist/electron-app/")
-	},
-	externals: [ nodeExternals() ],
-	node: {
-		__filename: false,
-		__dirname: false
-	},
-	performance: {
-		hints: false
 	},
 	module: {
 		rules: [{
@@ -41,13 +32,19 @@ module.exports = {
 			}
 		}]
 	},
-	plugins: [
-		new CleanWebpackPlugin()
-	],
 	resolve: {
 		extensions: [ ".js", ".mjs", ".json" ],
 		alias: {
 			"@": resolve(__dirname, "./src/electron-app/")
 		}
+	},
+	plugins: [
+		new CleanWebpackPlugin()
+	],
+	target: "electron-main",
+	externals: [ nodeExternals() ],
+	node: {
+		__filename: false,
+		__dirname: false
 	}
 };

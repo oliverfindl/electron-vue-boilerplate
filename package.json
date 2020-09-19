@@ -10,7 +10,7 @@
 		"build": "npx cross-env NODE_ENV=production npm run build:electron-app && npx cross-env NODE_ENV=production npm run build:vue-app",
 		"build:electron-app": "npx webpack --config webpack-electron-app.config.js --hide-modules --progress && npx ncp ./src/electron-app/assets ./dist/electron-app/assets",
 		"build:vue-app": "npx webpack --config webpack-vue-app.config.js --hide-modules --progress",
-		"watch:vue-app": "npx webpack-dev-server --config webpack-vue-app.config.js --hot",
+		"watch:vue-app": "npx webpack-dev-server --config webpack-vue-app.config.js",
 		"pack": "npm run build && npx electron-builder --dir",
 		"dist": "npm run build && npx electron-builder",
 		"dist:all": "npm run build && npx electron-builder -wml --x64",

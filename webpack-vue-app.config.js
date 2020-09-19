@@ -8,28 +8,12 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { name: PACKAGE_NAME } = require(resolve(__dirname, "./package.json"));
 
 module.exports = {
-	mode: process.env.NODE_ENV,
-	target: "electron-renderer",
 	entry: resolve(__dirname, "./src/vue-app/main.js"),
+	mode: process.env.NODE_ENV,
 	output: {
 		path: resolve(__dirname, "./dist/vue-app/"),
-//		target: "/",
 		filename: "javascript/[name].[hash:8].js",
 		chunkFilename: "javascript/[id].[chunkhash:8].js"
-	},
-	node: {
-		__filename: true,
-		__dirname: true
-	},
-	devServer: {
-		historyApiFallback: true,
-		overlay: {
-			errors: true,
-			warnings: true
-		}
-	},
-	performance: {
-		hints: false
 	},
 	module: {
 		rules: [{
@@ -153,10 +137,17 @@ module.exports = {
 			test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
 			loader: "file-loader",
 			options: {
-				name:"fonts/[name].[hash:8].[ext]",
+				name: "fonts/[name].[hash:8].[ext]",
 				esModule: false
 			}
 		}]
+	},
+	resolve: {
+		extensions: [ ".vue", ".js", ".mjs", ".json" ],
+		alias: {
+			"vue$": "vue/dist/vue.esm.js",
+			"@": resolve(__dirname, "./src/vue-app/")
+		}
 	},
 	plugins: [
 		new VueLoaderPlugin(),
@@ -176,11 +167,20 @@ module.exports = {
 			xhtml: true
 		})
 	],
-	resolve: {
-		extensions: [ ".vue", ".js", ".mjs", ".json" ],
-		alias: {
-			"vue$": "vue/dist/vue.esm.js",
-			"@": resolve(__dirname, "./src/vue-app/")
-		}
+	devServer: {
+		historyApiFallback: true,
+		hot: true,
+		contentBase: __dirname,
+		inline: true,
+		overlay: {
+			errors: true,
+			warnings: true
+		},
+		stats: "minimal"
+	},
+	target: "electron-renderer",
+	node: {
+		__filename: true,
+		__dirname: true
 	}
 };
