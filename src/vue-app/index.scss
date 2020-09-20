@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+@import "@/styles/variables";
+
+#app {
+	font-family: $font-family;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-align: center;
+	background-color: $background-color;
+	color: $text-color;
+	margin-top: 60px;
+
+	&[v-cloak] {
+		display: none;
+	}
+}

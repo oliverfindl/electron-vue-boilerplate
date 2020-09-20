@@ -1,7 +1,9 @@
 "use strict";
 
 const { resolve } = require("path");
-const VueLoaderPlugin = require("vue-loader/lib/plugin");
+const { DefinePlugin } = require("webpack");
+const { VueLoaderPlugin } = require("vue-loader");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
@@ -42,7 +44,12 @@ module.exports = {
 		}, {
 			test: /\.css$/i,
 			use: [
-				"vue-style-loader",
+				{
+					loader: MiniCssExtractPlugin.loader,
+					options: {
+						hmr: process.env.NODE_ENV === "development"
+					}
+				},
 				{
 					loader: "css-loader",
 					options: {
@@ -57,7 +64,12 @@ module.exports = {
 		}, {
 			test: /\.scss$/i,
 			use: [
-				"vue-style-loader",
+				{
+					loader: MiniCssExtractPlugin.loader,
+					options: {
+						hmr: process.env.NODE_ENV === "development"
+					}
+				},
 				{
 					loader: "css-loader",
 					options: {
@@ -81,7 +93,12 @@ module.exports = {
 		}, {
 			test: /\.sass$/i,
 			use: [
-				"vue-style-loader",
+				{
+					loader: MiniCssExtractPlugin.loader,
+					options: {
+						hmr: process.env.NODE_ENV === "development"
+					}
+				},
 				{
 					loader: "css-loader",
 					options: {
@@ -144,13 +161,19 @@ module.exports = {
 	},
 	resolve: {
 		alias: {
-			"vue$": "vue/dist/vue.esm.js",
 			"@": resolve(__dirname, "./src/vue-app/")
 		},
 		extensions: [ ".vue", ".js", ".mjs", ".json" ]
 	},
 	plugins: [
+		new DefinePlugin({
+			__VUE_OPTIONS_API__: JSON.stringify(false),
+			__VUE_PROD_DEVTOOLS__: JSON.stringify(false)
+		}),
 		new VueLoaderPlugin(),
+		new MiniCssExtractPlugin({
+			filename: "styles/[name].[hash:8].css"
+		}),
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
 			title: PACKAGE_NAME,
@@ -178,6 +201,7 @@ module.exports = {
 		},
 		stats: "minimal"
 	},
+	devtool: process.env.NODE_ENV === "development" ? "eval-cheap-module-source-map" : "",
 	target: "electron-renderer",
 	node: {
 		__filename: true,

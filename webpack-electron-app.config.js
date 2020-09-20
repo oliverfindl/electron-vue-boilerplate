@@ -41,6 +41,7 @@ module.exports = {
 	plugins: [
 		new CleanWebpackPlugin()
 	],
+	devtool: process.env.NODE_ENV === "development" ? "eval-cheap-module-source-map" : "",
 	target: "electron-main",
 	externals: [ nodeExternals() ],
 	node: {

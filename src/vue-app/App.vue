@@ -1,8 +1,6 @@
 <template>
-	<div id="app">
-		<img class="vue-logo" src="@/assets/logo.svg" alt="Vue logo" />
-		<HelloWorld message="Welcome to Your Vue.js App" />
-	</div>
+	<img class="vue-logo" src="@/assets/logo.svg" alt="Vue logo" />
+	<HelloWorld message="Hello Vue 3.0 + Webpack" />
 </template>
 
 <script>
@@ -10,11 +8,10 @@
 
 	"use strict";
 
+	import HelloWorld from "@/components/HelloWorld";
+
 	export default {
-		name: "App",
-		components: {
-			HelloWorld: () => import("@/components/HelloWorld.vue")
-		}
+		components: { HelloWorld }
 	};
 </script>
 
@@ -23,17 +20,7 @@
 
 	@import "@/styles/variables";
 
-	#app {
-		font-family: $font-family;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-		text-align: center;
-		background-color: $background-color;
-		color: $text-color;
-		margin-top: 60px;
-	}
-
-	img.vue-logo {
-		max-width: 200px;
+	.vue-logo {
+		max-width: 10rem;
 	}
 </style>
