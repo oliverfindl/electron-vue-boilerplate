@@ -14,8 +14,8 @@ module.exports = {
 		rules: [{
 			enforce: "pre",
 			test: /\.m?js$/i,
-			exclude: /node_modules/,
 			loader: "eslint-loader",
+			exclude: /node_modules/,
 			options: {
 				configFile: resolve(__dirname, "./.eslintrc-electron-app.js"),
 				emitError: true,
@@ -33,10 +33,10 @@ module.exports = {
 		}]
 	},
 	resolve: {
-		extensions: [ ".js", ".mjs", ".json" ],
 		alias: {
 			"@": resolve(__dirname, "./src/electron-app/")
-		}
+		},
+		extensions: [ ".js", ".mjs", ".json" ]
 	},
 	plugins: [
 		new CleanWebpackPlugin()

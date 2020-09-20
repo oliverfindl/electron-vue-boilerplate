@@ -11,16 +11,16 @@ module.exports = {
 	entry: resolve(__dirname, "./src/vue-app/main.js"),
 	mode: process.env.NODE_ENV,
 	output: {
-		path: resolve(__dirname, "./dist/vue-app/"),
 		filename: "javascript/[name].[hash:8].js",
-		chunkFilename: "javascript/[id].[chunkhash:8].js"
+		chunkFilename: "javascript/[id].[chunkhash:8].js",
+		path: resolve(__dirname, "./dist/vue-app/")
 	},
 	module: {
 		rules: [{
 			enforce: "pre",
 			test: /\.(vue|m?js)$/i,
-			exclude: /(node_modules|bower_components)/,
 			loader: "eslint-loader",
+			exclude: /(node_modules|bower_components)/,
 			options: {
 				configFile: resolve(__dirname, "./.eslintrc-vue-app.js"),
 				emitError: true,
@@ -143,11 +143,11 @@ module.exports = {
 		}]
 	},
 	resolve: {
-		extensions: [ ".vue", ".js", ".mjs", ".json" ],
 		alias: {
 			"vue$": "vue/dist/vue.esm.js",
 			"@": resolve(__dirname, "./src/vue-app/")
-		}
+		},
+		extensions: [ ".vue", ".js", ".mjs", ".json" ]
 	},
 	plugins: [
 		new VueLoaderPlugin(),
@@ -168,9 +168,9 @@ module.exports = {
 		})
 	],
 	devServer: {
+		contentBase: __dirname,
 		historyApiFallback: true,
 		hot: true,
-		contentBase: __dirname,
 		inline: true,
 		overlay: {
 			errors: true,
