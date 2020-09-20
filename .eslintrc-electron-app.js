@@ -3,12 +3,12 @@
 module.exports = {
 	"env": {
 		"commonjs": true,
-		"es2020": true,
+		"es2021": true,
 		"node": true
 	},
 	"extends": "eslint:recommended",
 	"parserOptions": {
-		"ecmaVersion": 11,
+		"ecmaVersion": 12,
 		"parser": "babel-eslint"
 	},
 	"rules": {
