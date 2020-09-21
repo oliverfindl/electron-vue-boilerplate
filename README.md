@@ -9,7 +9,7 @@ Simple boilerplate for building [Vue](https://github.com/vuejs/vue) app with [El
 
 ## Whats under the hood?
 
-- [Simple](https://github.com/vuejs-templates/webpack-simple) [Vue](https://github.com/vuejs/vue) app ([vue-router](https://github.com/vuejs/vue-router) and [vuex](https://github.com/vuejs/vuex) can be additionally installed).
+- Simple [Vue](https://github.com/vuejs/vue) app ([vue-router](https://github.com/vuejs/vue-router) and [vuex](https://github.com/vuejs/vuex) can be additionally installed).
 - [Electron](https://github.com/electron/electron) with [electron-builder](https://github.com/electron-userland/electron-builder) package for building installers.
 - [Webpack](https://github.com/webpack/webpack) server for [development](https://github.com/webpack/webpack-dev-server) with HMR enabled.
 - Support for [Sass](https://github.com/sass/sass) out of box thanks to [node-sass](https://github.com/sass/node-sass) package.
@@ -108,7 +108,7 @@ $ npm run postinstall
 │       ├── components              # directory for Vue app components
 │       ├── styles                  # directory for Vue app styles
 │       ├── App.vue                 # main Vue component file
-│       ├── index.html              # index file for Vue app
+│       ├── index.html              # main index file for Vue app
 │       ├── index.scss              # main style file for Vue app
 │       └── main.js                 # main Vue app file
 ├── package.json                    # npm configuration file
