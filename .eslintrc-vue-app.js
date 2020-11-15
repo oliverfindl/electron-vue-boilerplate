@@ -9,10 +9,12 @@ module.exports = {
 		"eslint:recommended",
 		"plugin:vue/vue3-essential"
 	],
+	"parser": "vue-eslint-parser",
 	"parserOptions": {
 		"ecmaVersion": 12,
-		"parser": "babel-eslint",
-		"sourceType": "module"
+		"sourceType": "module",
+		"parser": "@babel/eslint-parser",
+		"requireConfigFile": false
 	},
 	"plugins": [
 		"vue"
