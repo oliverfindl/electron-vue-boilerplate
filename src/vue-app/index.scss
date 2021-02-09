@@ -15,3 +15,9 @@
 		display: none;
 	}
 }
+
+body{
+	/* Fills in background of main window */
+	background-color: $background-color;
+	height: auto;
+}
