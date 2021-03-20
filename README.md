@@ -38,7 +38,7 @@ $ npm update
 $ npm run dev
 
 # [terminal 2] Launch Electron app connected to Webpack development server
-$ npm run start
+$ npm run app
 
 # [terminal 3] Build installers for your current platform
 $ npm run dist
@@ -50,6 +50,9 @@ $ npm run dist
 # Alias for watch:vue-app
 $ npm run dev
 
+# Alias for start
+$ npm run app
+
 # Alias for build:electron-app and start:electron-app
 $ npm run start
 
@@ -59,8 +62,14 @@ $ npm run start:electron-app
 # Build Electron app and Vue app
 $ npm run build
 
-# Build Electron app
+# Build Electron app with DevTools disabled
 $ npm run build:electron-app
+
+# Build electron app with DevTools enabled
+$ npm run build:electron-app-dev
+
+# Copy Electron app assets
+$ npm run copy:electron-app-assets
 
 # Build Vue app
 $ npm run build:vue-app

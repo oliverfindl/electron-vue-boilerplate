@@ -1,23 +1,32 @@
 @charset "utf-8";
 
 @import "@/styles/variables";
+@import "@/styles/mixins";
 
 #app {
+	background-color: $background-color;
+	color: $text-color;
 	font-family: $font-family;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-align: center;
-	background-color: $background-color;
-	color: $text-color;
-	margin-top: 60px;
+	padding: $padding;
+	border-radius: $border-radius;
 
 	&[v-cloak] {
 		display: none;
 	}
 }
 
-body{
-	/* Fills in background of main window */
-	background-color: $background-color;
-	height: auto;
+html,
+html > body {
+	width: 100vw;
+	height: 100vh;
+	padding: 0;
+	margin: 0;
+}
+
+html > body {
+	@include flex-center;
+	background-color: $body-background-color;
 }

@@ -1,42 +1,32 @@
 "use strict";
 
 const { resolve } = require("path");
-const { DefinePlugin } = require("webpack");
+const { DefinePlugin, HotModuleReplacementPlugin } = require("webpack");
 const { VueLoaderPlugin } = require("vue-loader");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ESLintPlugin = require("eslint-webpack-plugin");
+const StylelintPlugin = require("stylelint-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-const { name: PACKAGE_NAME } = require(resolve(__dirname, "./package.json"));
+const PACKAGE_PATH = resolve(__dirname, "./package.json");
+const { name: PACKAGE_NAME } = require(PACKAGE_PATH);
 
-module.exports = {
+module.exports = (env = {}) => ({
 	entry: resolve(__dirname, "./src/vue-app/main.js"),
-	mode: process.env.NODE_ENV,
+	mode: env.prod ? "production" : "development",
 	output: {
-		filename: "javascript/[name].[hash:8].js",
-		chunkFilename: "javascript/[id].[chunkhash:8].js",
+		filename: "scripts/[name].[contenthash:8].js",
+		chunkFilename: "scripts/[id].[contenthash:8].js",
 		path: resolve(__dirname, "./dist/vue-app/")
 	},
 	module: {
-		rules: [{
-			enforce: "pre",
-			test: /\.(vue|m?js)$/i,
-			loader: "eslint-loader",
-			exclude: /(node_modules|bower_components)/,
-			options: {
-				configFile: resolve(__dirname, "./.eslintrc-vue-app.js"),
-				emitError: true,
-				emitWarning: true,
-				failOnError: true,
-				failOnWarning: true
-			}
-		}, {
+		rules: [ {
 			test: /\.vue$/i,
 			loader: "vue-loader"
 		}, {
 			test: /\.m?js$/i,
 			loader: "babel-loader",
-			exclude: /(node_modules|bower_components)/,
+			exclude: /node_modules/,
 			options: {
 				comments: false,
 				minified: true
@@ -44,16 +34,10 @@ module.exports = {
 		}, {
 			test: /\.css$/i,
 			use: [
-				{
-					loader: MiniCssExtractPlugin.loader,
-					options: {
-						hmr: process.env.NODE_ENV === "development"
-					}
-				},
+				"style-loader",
 				{
 					loader: "css-loader",
 					options: {
-						esModule: false,
 						importLoaders: 1
 						// 0 => no loaders (default);
 						// 1 => postcss-loader;
@@ -64,20 +48,14 @@ module.exports = {
 		}, {
 			test: /\.scss$/i,
 			use: [
-				{
-					loader: MiniCssExtractPlugin.loader,
-					options: {
-						hmr: process.env.NODE_ENV === "development"
-					}
-				},
+				"style-loader",
 				{
 					loader: "css-loader",
 					options: {
-						esModule: false,
 						importLoaders: 2
 						// 0 => no loaders (default);
 						// 1 => postcss-loader;
-						// 2 => postcss-loader, sass-loader
+						// 2 => postcss-loader, sass-loader;
 					}
 				},
 				"postcss-loader",
@@ -93,20 +71,14 @@ module.exports = {
 		}, {
 			test: /\.sass$/i,
 			use: [
-				{
-					loader: MiniCssExtractPlugin.loader,
-					options: {
-						hmr: process.env.NODE_ENV === "development"
-					}
-				},
+				"style-loader",
 				{
 					loader: "css-loader",
 					options: {
-						esModule: false,
 						importLoaders: 2
 						// 0 => no loaders (default);
 						// 1 => postcss-loader;
-						// 2 => postcss-loader, sass-loader
+						// 2 => postcss-loader, sass-loader;
 					}
 				},
 				"postcss-loader",
@@ -122,42 +94,38 @@ module.exports = {
 			]
 		}, {
 			test: /\.svg(\?.*)?$/i,
-			use: [{
-				loader: "file-loader",
-				options: {
-					name: "images/[name].[hash:8].[ext]",
-					esModule: false
-				}
-			}, {
-				loader: "svgo-loader",
-				options: {
-					plugins: [{
-						removeViewBox: false
-					}]
-				}
-			}]
+			use: [
+				{
+					loader: "file-loader",
+					options: {
+						name: "images/[name].[contenthash:8].[ext]",
+						esModule: false
+					}
+				},
+				"svgo-loader"
+			]
 		}, {
 			test: /\.(png|jpe?g|webp|gif|ico)(\?.*)?$/i,
 			loader: "file-loader",
 			options: {
-				name: "images/[name].[hash:8].[ext]",
+				name: "images/[name].[contenthash:8].[ext]",
 				esModule: false
 			}
 		}, {
 			test: /\.(mp4|webm|ogg|mp3|aac|wav|flac)(\?.*)?$/i,
 			loader: "file-loader",
 			options: {
-				name: "media/[name].[hash:8].[ext]",
+				name: "media/[name].[contenthash:8].[ext]",
 				esModule: false
 			}
 		}, {
 			test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
 			loader: "file-loader",
 			options: {
-				name: "fonts/[name].[hash:8].[ext]",
+				name: "fonts/[name].[contenthash:8].[ext]",
 				esModule: false
 			}
-		}]
+		} ]
 	},
 	resolve: {
 		alias: {
@@ -166,13 +134,18 @@ module.exports = {
 		extensions: [ ".vue", ".js", ".mjs", ".json" ]
 	},
 	plugins: [
+		...(!env.prod ? [ new HotModuleReplacementPlugin() ] : []),
 		new DefinePlugin({
 			__VUE_OPTIONS_API__: JSON.stringify(false),
 			__VUE_PROD_DEVTOOLS__: JSON.stringify(false)
 		}),
 		new VueLoaderPlugin(),
-		new MiniCssExtractPlugin({
-			filename: "styles/[name].[hash:8].css"
+		new ESLintPlugin({
+			files: [ "src/**/*.{vue,js,mjs}" ],
+			overrideConfigFile: resolve(__dirname, "./.eslintrc-vue-app.js")
+		}),
+		new StylelintPlugin({
+			files: [ "src/**/*.{vue,scss}" ]
 		}),
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
@@ -201,10 +174,10 @@ module.exports = {
 		},
 		stats: "minimal"
 	},
-	devtool: process.env.NODE_ENV === "development" ? "eval-cheap-module-source-map" : "",
+	devtool: !env.prod ? "eval-cheap-module-source-map" : undefined,
 	target: "electron-renderer",
 	node: {
 		__filename: true,
 		__dirname: true
 	}
-};
+});

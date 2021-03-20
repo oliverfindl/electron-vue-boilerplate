@@ -1,0 +1,11 @@
+@charset "utf-8";
+
+@mixin flex {
+	display: flex;
+}
+
+@mixin flex-center {
+	@include flex;
+	align-items: center;
+	justify-content: center;
+}

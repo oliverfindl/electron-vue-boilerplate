@@ -3,15 +3,15 @@
 // Modules to control application life and create native browser window.
 const { app, BrowserWindow } = require("electron");
 const { resolve } = require("path");
-const { format } = require("url");
 
 const createWindow = () => {
 	// Create the browser window.
 	const mainWindow = new BrowserWindow({
-		width: 800,
-		height: 600,
+		width: 720,
+		height: 540,
 		icon: resolve(__dirname, "./assets/icon.png"),
 		webPreferences: {
+			contextIsolation: false,
 			nodeIntegration: true
 		}
 	});
@@ -20,20 +20,10 @@ const createWindow = () => {
 	mainWindow.setMenu(null);
 
 	// Load the index.html of the app.
-	mainWindow.loadURL(process.env.NODE_ENV === "development" ? format({
-		hostname: "localhost",
-		pathname: "index.html",
-		protocol: "http",
-		slashes: true,
-		port: 8080
-	}) : format({
-		pathname: resolve(__dirname, "../vue-app/index.html"),
-		protocol: "file",
-		slashes: true
-	}));
+	mainWindow.loadURL(!PRODUCTION_BUILD ? " http://localhost:8080/index.html" : ("file://" + resolve(__dirname, "../vue-app/index.html")));
 
 	// Open the DevTools.
-	if(process.env.NODE_ENV === "development") {
+	if(!PRODUCTION_BUILD) {
 		mainWindow.webContents.openDevTools();
 		// require("devtron").install(); // TypeError: electron.BrowserWindow.addDevToolsExtension is not a function
 		// require("vue-devtools").install(); // not supported yet
