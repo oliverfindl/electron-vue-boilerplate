@@ -16,7 +16,7 @@ module.exports = (env = {}) => ({
 	mode: env.prod ? "production" : "development",
 	output: {
 		filename: "scripts/[name].[contenthash:8].js",
-		chunkFilename: "scripts/[id].[contenthash:8].js",
+		chunkFilename: "scripts/[name].[contenthash:8].js",
 		path: resolve(__dirname, "./dist/vue-app/")
 	},
 	module: {
