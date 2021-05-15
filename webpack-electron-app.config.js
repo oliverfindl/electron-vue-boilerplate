@@ -3,6 +3,7 @@
 const { resolve } = require("path");
 const { DefinePlugin } = require("webpack");
 const ESLintPlugin = require("eslint-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = (env = {}) => ({
@@ -27,6 +28,14 @@ module.exports = (env = {}) => ({
 			"@": resolve(__dirname, "./src/electron-app/")
 		},
 		extensions: [ ".js", ".mjs", ".json" ]
+	},
+	optimization: {
+		minimize: true,
+		minimizer: [
+			new TerserPlugin({
+				extractComments: false
+			})
+		]
 	},
 	plugins: [
 		new DefinePlugin({
