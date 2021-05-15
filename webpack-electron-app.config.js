@@ -2,7 +2,6 @@
 
 const { resolve } = require("path");
 const { DefinePlugin } = require("webpack");
-const nodeExternals = require("webpack-node-externals");
 const ESLintPlugin = require("eslint-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
@@ -41,7 +40,6 @@ module.exports = (env = {}) => ({
 	],
 	devtool: !env.prod ? "eval-cheap-module-source-map" : undefined,
 	target: "electron-main",
-	externals: [ nodeExternals() ],
 	node: {
 		__filename: false,
 		__dirname: false
