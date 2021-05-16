@@ -135,14 +135,14 @@ module.exports = (env = {}) => ({
 		},
 		extensions: [ ".vue", ".js", ".mjs", ".json" ]
 	},
-	optimization: {
+	optimization: env.prod ? {
 		minimize: true,
 		minimizer: [
 			new TerserPlugin({
 				extractComments: false
 			})
 		]
-	},
+	} : undefined,
 	plugins: [
 		...(!env.prod ? [ new HotModuleReplacementPlugin() ] : []),
 		new DefinePlugin({

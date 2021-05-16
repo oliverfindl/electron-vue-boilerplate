@@ -29,14 +29,14 @@ module.exports = (env = {}) => ({
 		},
 		extensions: [ ".js", ".mjs", ".json" ]
 	},
-	optimization: {
+	optimization: env.prod ? {
 		minimize: true,
 		minimizer: [
 			new TerserPlugin({
 				extractComments: false
 			})
 		]
-	},
+	} : undefined,
 	plugins: [
 		new DefinePlugin({
 			PRODUCTION_BUILD: JSON.stringify(env.prod)
